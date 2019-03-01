@@ -10,8 +10,12 @@ body {
     border-color: rgb(223, 225, 230) !important;
     border-width: 2px !important;
     padding: 6px !important;
-    max-width: 100%;
     min-height: 40px;
+}
+
+[input-delinea]:focus {
+    border-color:#a6ce39 !important;
+    background: none;
 }
 
 .form-group {
