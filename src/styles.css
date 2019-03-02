@@ -1,5 +1,5 @@
 body {
-    background-color: #fafafa;
+    background-color: #fafafa;   
 }
 
 [input-delinea] {
@@ -11,11 +11,16 @@ body {
     border-width: 2px !important;
     padding: 6px !important;
     min-height: 40px;
+    color: #4e4e4e !important;
 }
 
 [input-delinea]:focus {
-    border-color:#a6ce39 !important;
+    border-color:#00b0ef !important;
     background: none;
+}
+
+input[type="date"]:not([readonly]), input[type="datetime-local"]:not([readonly]), input[type="email"]:not([readonly]), input[type="number"]:not([readonly]), input[type="password"]:not([readonly]), input[type="tel"]:not([readonly]), input[type="text"]:not([readonly]), input[type="time"]:not([readonly]), input[type="url"]:not([readonly]) {
+    background: none !important;
 }
 
 .form-group {

@@ -14,11 +14,15 @@ h2 {
     margin-right: auto;
 }
 
+[input-delinea] {
+    width: 300px;
+}
+
 .panel {
     margin-top: 1rem;
     background-color: #fff;
-    width: 500px;
-    height: 400px;
+    width: 350px;
+    height: 300px;
     border: 1px #ededed solid;
     border-radius: 5px;
     padding: 1rem;
