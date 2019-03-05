@@ -10,11 +10,11 @@ const routes: Routes = [
       children: [
       {
         path: '',
-        redirectTo: './empresa',
+        redirectTo: './candidatos',
         pathMatch: 'full'
       },
       {
-        path: 'empresa',
+        path: 'candidatos',
         component: DashboardComponent
       },
     ]
