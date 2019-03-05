@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,14 +13,12 @@ export class DashboardComponent implements OnInit {
   options: any[] = [];
 
   constructor(
+    private activiteRouter: ActivatedRoute,
     private router: Router,
-    private activiteRouter: ActivatedRoute
-  ) {
-    router.events.forEach((event) => {
-      if (event instanceof NavigationEnd) {
-        this.title = this.activiteRouter.firstChild.data['value'].title
-      }
-    });
+    private titlePage: Title
+  ) { 
+    this.title = "Teste";
+    titlePage.setTitle("Bem vindo ao Banco de Talentos...");
   }
 
   ngOnInit() {

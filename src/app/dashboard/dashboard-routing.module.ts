@@ -4,7 +4,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.components/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, data: { title: 'Dashboard' } }
+  {
+      path: '',
+      component: DashboardComponent,
+      children: [
+      {
+        path: '',
+        redirectTo: './empresa',
+        pathMatch: 'full'
+      },
+      {
+        path: 'empresa',
+        component: DashboardComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({

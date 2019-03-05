@@ -14,9 +14,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private title: Title
+    private titlePage: Title
   ) { 
-    title.setTitle("Conecte-se ao Banco de Talentos...");
+    titlePage.setTitle("Conecte-se ao Banco de Talentos...");
   }
 
   ngOnInit() {
