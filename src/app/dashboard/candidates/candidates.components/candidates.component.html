@@ -1,0 +1,16 @@
+<clr-datagrid [(clrDgSingleSelected)]="denunciaSelecionada" [clDgRowSelection]="true">
+  <clr-dg-placeholder>Sem Candidatos cadastrados!</clr-dg-placeholder>
+  <clr-dg-column [clrDgField]="'name'">Nome</clr-dg-column>
+  <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+  <clr-dg-column [clrDgField]="'phone'">Telefone</clr-dg-column>
+  <clr-dg-row *clrDgItems="let candidate of candidates" [clrDgItem]="candidate" (dblclick)="onEdit()">
+    <clr-dg-cell>{{ candidate.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ candidate.email }}</clr-dg-cell>
+    <clr-dg-cell>{{ candidate.phone }}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} de {{pagination.totalItems}} Candidatos
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { ClarityModule } from "@clr/angular";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { DialogService } from "../providers/dialog.service";
 
 @NgModule({
     imports: [
@@ -16,6 +17,6 @@ import { CommonModule } from "@angular/common";
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [],
+    providers: [DialogService],
 })
 export class SharedModule { }

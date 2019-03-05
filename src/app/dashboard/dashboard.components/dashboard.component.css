@@ -1,14 +1,16 @@
 header .header-nav .nav-link.nav-text { line-height: 1.5rem; }
+
 form { padding-left: 2rem; }
 
 .header.header-4, header.header-4 {
-    background-color: #a6ce39 !important;
+    background-color: #a4cc36  !important;
     height: 2rem;
 }
 
 .header .branding .title, header .branding .title {
     font-size: 0.75rem !important;
     font-weight: 700 !important;
+    padding: 2px 0 0 10%;
 }
 
 .clr-vertical-nav {
@@ -26,9 +28,9 @@ form { padding-left: 2rem; }
 
 .clr-vertical-nav .nav-link.active, .clr-vertical-nav .nav-link:hover {
     font-weight: 600;
-    border-left: 0.2rem solid #a6ce39;
+    border-left: 0.2rem solid #a4cc36 ;
     padding-left: 1.0rem;
-    color: #a6ce39;
+    color: #a4cc36 ;
 }
 
 .main-container:not([class*=open-overflow-menu]):not([class*=open-hamburger-menu]) .clr-vertical-nav.is-collapsed.has-icons .nav-link {
@@ -41,7 +43,7 @@ form { padding-left: 2rem; }
 }
 
 .clr-vertical-nav .nav-link.active .nav-icon, .clr-vertical-nav .nav-link:hover .nav-icon {
-    fill: #a6ce39 !important;
+    fill: #a4cc36  !important;
 }
 
 .main-container {

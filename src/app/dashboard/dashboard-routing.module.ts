@@ -5,20 +5,14 @@ import { DashboardComponent } from './dashboard.components/dashboard.component';
 
 const routes: Routes = [
   {
-      path: '',
-      component: DashboardComponent,
-      children: [
-      {
-        path: '',
-        redirectTo: './candidatos',
-        pathMatch: 'full'
-      },
-      {
-        path: 'candidatos',
-        component: DashboardComponent
-      },
+    path: '',
+    component: DashboardComponent,
+    children: [
+      { path: '', redirectTo: '/dashboard/candidatos', pathMatch: 'full' },
+      { path: 'candidatos', loadChildren: './candidates/candidates.module#CandidatesModule' }
     ]
-  }
+  },
+
 ];
 
 @NgModule({

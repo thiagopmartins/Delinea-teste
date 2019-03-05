@@ -10,6 +10,11 @@ a {
     color: #00b0ef;
 }
 
+clr-datagrid {
+    padding: 0 2%;
+    min-height: 250px;
+}
+
 a:visited {
     color: #00b0ef;
     text-decoration: none;
