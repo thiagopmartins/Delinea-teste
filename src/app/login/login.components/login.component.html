@@ -17,6 +17,11 @@
               placeholder="Insira sua senha">
           </label>
         </div>
+        <button type="submit" class="btn btn-block btn-delinea" id="btn-login">ENTRAR</button>
+        <button class="btn btn-block btn-delinea-outline">REGISTRAR UMA CONTA</button>
+        <div id="no-login">
+          <a [routerLink]="['/dashboard']" routerLinkActive="active"  class="signup">Conectar sem uma conta</a>
+        </div>
       </form>
     </div>
   </div>
