@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Candidate } from 'src/app/models/candidate.model';
 import { DialogService } from 'src/app/providers/dialog.service';
+import { CandidateService } from 'src/app/providers/candidate.service';
 
 @Component({
   selector: 'app-candidates',
@@ -14,33 +15,14 @@ export class CandidatesComponent implements OnInit {
   candidateSelected: Candidate;
 
   constructor(
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private candidateService: CandidateService
   ) { }
 
   ngOnInit() {
-    this.candidates.push({
-      birthdate: Date.toString(),
-      cpf: '12345678977',
-      rg: '12345695',
-      id: 1,
-      name: 'Thiago Martins',
-      password: '123456',
-      phone: '4999896325',
-      username: 'thiagopmartins',
-      email: 'thiagopmartins@outlook.com'
-    },
-      {
-        birthdate: Date.toString(),
-        cpf: '12345678977',
-        rg: '12345695',
-        id: 1,
-        name: 'Thiago Martins 2',
-        password: '123456',
-        phone: '4999896325',
-        username: 'thiagopmartins',
-        email: 'thiagopmartins@outlook.com'
-      }
-    );
+    this.candidateService.getAllCandidates().subscribe((data: Candidate) => {
+      this.candidates.push(data);
+    });
   }
 
 }
