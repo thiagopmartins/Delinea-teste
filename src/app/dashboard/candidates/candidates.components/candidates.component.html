@@ -1,4 +1,18 @@
-<clr-datagrid [(clrDgSingleSelected)]="denunciaSelecionada" [clDgRowSelection]="true">
+<clr-datagrid [(clrDgSingleSelected)]="candidateSelected" [clDgRowSelection]="true">
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-success-outline" (click)="onCreate()">
+        <clr-icon shape="plus"></clr-icon> Adicionar
+      </button>
+      <button type="button" class="btn btn-sm btn-danger-outline" (click)="onDelete()"
+        [disabled]="!candidateSelected">
+        <clr-icon shape="close"></clr-icon> Deletar
+      </button>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" [disabled]="!candidateSelected">
+        <clr-icon shape="pencil"></clr-icon> Editar
+      </button>
+    </div>
+  </clr-dg-action-bar>
   <clr-dg-placeholder>Sem Candidatos cadastrados!</clr-dg-placeholder>
   <clr-dg-column [clrDgField]="'name'">Nome</clr-dg-column>
   <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>

@@ -5,6 +5,17 @@
       <span class="title">Banco de Talentos</span>
     </a>
   </div>
+  <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-text" clrDropdownTrigger>
+        {{userName}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="/login" (click)="logout()" clrDropdownItem>Sair</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
 </header>
 <div class="main-container">
   <div class="content-container">

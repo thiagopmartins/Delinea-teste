@@ -1,4 +1,5 @@
 
 Todo:
   ☐ Sistema de login
-  ☐ Criar PageNotFound
+  ☐ Avisos de erro ao usuário
+  ☐ Bloquear botao quando nao preencher os campos requeridos

@@ -2,6 +2,12 @@ header .header-nav .nav-link.nav-text { line-height: 1.5rem; }
 
 form { padding-left: 2rem; }
 
+.header .header-actions > .dropdown > .dropdown-toggle, .header .settings > .dropdown > .dropdown-toggle, header .header-actions > .dropdown > .dropdown-toggle, header .settings > .dropdown > .dropdown-toggle {
+    height: 2.2rem !important;
+    line-height: 2.2rem !important;
+    color: #FFF !important;
+}
+
 .header.header-4, header.header-4 {
     background-color: #a4cc36  !important;
     height: 2rem;

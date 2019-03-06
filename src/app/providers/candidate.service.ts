@@ -1,6 +1,7 @@
+import { API_URL, handleError } from './../utils/utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Candidate } from '../models/candidate.model';
 
@@ -10,33 +11,29 @@ import { Candidate } from '../models/candidate.model';
 
 export class CandidateService {
 
-  apiURL = 'http://delineaapi.herokuapp.com';
-
   constructor(private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  getAllCandidates(): Observable<Candidate> {
+    return this.http.get<Candidate>(API_URL + '/candidate/')
+      .pipe(
+        retry(1),
+        catchError(handleError)
+      );
   }
 
-  getAllCandidates(): Observable<Candidate> {
-    return this.http.get<Candidate>(this.apiURL + '/candidate/')
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-  handleError(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  deleteCandidate(id: number): Observable<Candidate> {
+    let token: string = localStorage.getItem('token');
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
     }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
- }
+    return this.http.delete(API_URL + `/candidate/${id}/delete`,
+      httpOptions
+    )
+      .pipe(
+        retry(1),
+        catchError(handleError)
+      );
+  }
 }

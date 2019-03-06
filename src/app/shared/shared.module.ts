@@ -1,8 +1,8 @@
-import { NgModule } from "@angular/core";
-import { ClarityModule } from "@clr/angular";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
-import { DialogService } from "../providers/dialog.service";
+import { ClarityModule } from '@clr/angular';
+import { CommonModule } from '@angular/common';
+import { DialogService } from '../providers/dialog.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
     imports: [
