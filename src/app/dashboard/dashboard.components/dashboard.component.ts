@@ -21,10 +21,7 @@ export class DashboardComponent implements OnInit {
     this.title = "Cadastro de Candidatos";
     titlePage.setTitle("Bem vindo ao Banco de Talentos...");
 
-    console.log(localStorage.getItem('user'));
-    
-
-    this.userName = localStorage.getItem('user') === ( undefined || null ) ? 'Não logado' : localStorage.getItem('user');
+     this.userName = localStorage.getItem('user') === ( undefined || null ) ? 'Não logado' : localStorage.getItem('user');
   }
 
   ngOnInit() {

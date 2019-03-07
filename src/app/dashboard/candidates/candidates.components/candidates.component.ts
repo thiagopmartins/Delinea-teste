@@ -4,6 +4,7 @@ import { Candidate } from 'src/app/models/candidate.model';
 import { DialogService } from 'src/app/providers/dialog.service';
 import { CandidateService } from 'src/app/providers/candidate.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidates',
@@ -23,7 +24,8 @@ export class CandidatesComponent implements OnInit {
   constructor(
     private candidateService: CandidateService,
     private dialogService: DialogService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.form = this.fb.group({
       id: [],
@@ -63,7 +65,8 @@ export class CandidatesComponent implements OnInit {
 
   onSave(): void {
     if (this.candidateSelected) {
-      this.candidateService.updateCandidate(this.form.value).subscribe((data) => {
+      let passwordChanges: boolean = (this.form.controls['password'].value !== this.candidateSelected.password);
+      this.candidateService.updateCandidate(this.form.value, passwordChanges).subscribe((data) => {
         this.listCandidates();
         this.showModal = false;
         console.log(data);
@@ -85,13 +88,23 @@ export class CandidatesComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.dialogService.confirm(`Deseja deletar o candidato ${this.candidateSelected.name} ?`)
-      .then((canDelete: boolean) => {
-        if (canDelete) {
-          this.candidateService.deleteCandidate(this.candidateSelected.id).subscribe(() => {
-            this.listCandidates();
-          });
-        }
-      });
+    if (localStorage.getItem('token') === (undefined || null)) {
+      this.dialogService.confirm(`Apenas usuários logados podem deletar um candidato.\nDeseja acessar a página de login?`)
+        .then((login: boolean) => {
+          if (login) {
+            this.router.navigate(['login']);
+          }
+        });
+    }
+    else {
+      this.dialogService.confirm(`Deseja deletar o candidato ${this.candidateSelected.name} ?`)
+        .then((canDelete: boolean) => {
+          if (canDelete) {
+            this.candidateService.deleteCandidate(this.candidateSelected.id).subscribe(() => {
+              this.listCandidates();
+            });
+          }
+        });
+    }
   }
 }

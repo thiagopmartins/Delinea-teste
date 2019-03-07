@@ -16,7 +16,7 @@
   <clr-dg-column [clrDgField]="'name'">Nome</clr-dg-column>
   <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
   <clr-dg-column [clrDgField]="'phone'">Telefone</clr-dg-column>
-  <clr-dg-row *clrDgItems="let candidate of candidates" [clrDgItem]="candidate" (dblclick)="onEdit()">
+  <clr-dg-row *clrDgItems="let candidate of candidates" [clrDgItem]="candidate">
     <clr-dg-cell>{{ candidate.name }}</clr-dg-cell>
     <clr-dg-cell>{{ candidate.email }}</clr-dg-cell>
     <clr-dg-cell>{{ candidate.phone }}</clr-dg-cell>

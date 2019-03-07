@@ -22,8 +22,8 @@ export class CandidateService {
   }
 
   createCandidate(candidate: Candidate): Observable<Candidate> {
-    
-    const body = this.mountBody(candidate);
+
+    const body = this.mountBody(candidate, true);
 
     return this.http.post(API_URL + '/candidate/',
       body.toString(),
@@ -34,8 +34,8 @@ export class CandidateService {
     );
   }
 
-  updateCandidate(candidate: Candidate): Observable<Candidate> {
-    const body = this.mountBody(candidate);
+  updateCandidate(candidate: Candidate, changePassword: boolean): Observable<Candidate> {
+    const body = this.mountBody(candidate, changePassword);
 
     return this.http.put(API_URL + '/candidate/' + candidate.id,
       body.toString(),
@@ -62,17 +62,18 @@ export class CandidateService {
       );
   }
 
-  mountBody(candidate: Candidate): HttpParams {
-    let date = candidate.birth_date.split('/');
-
-    return new HttpParams()
-    .set('name', candidate.name)
-    .set('email', candidate.email)
-    .set('cpf', candidate.cpf)
-    .set('rg', candidate.rg.toString())
-    .set('phone', candidate.phone)
-    .set('username', candidate.username)
-    .set('password', candidate.password)
-    .set('birth_date', candidate.birth_date);
-  }  
+  mountBody(candidate: Candidate, changePassword: boolean): HttpParams {
+    let httpParams = new HttpParams()
+      .set('name', candidate.name)
+      .set('email', candidate.email)
+      .set('cpf', candidate.cpf)
+      .set('rg', candidate.rg.toString())
+      .set('phone', candidate.phone)
+      .set('username', candidate.username)
+      .set('birth_date', candidate.birth_date);
+    if (changePassword){
+      httpParams = httpParams.set('password', candidate.password);
+    }
+    return httpParams;
+  }
 }

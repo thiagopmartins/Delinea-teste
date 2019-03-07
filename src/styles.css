@@ -84,7 +84,7 @@ a:hover {
 }
 
 .modal-dialog.modal-lg {
-    width: 28rem;
+    max-width: 30rem;
 }
 
 #btn-login {
