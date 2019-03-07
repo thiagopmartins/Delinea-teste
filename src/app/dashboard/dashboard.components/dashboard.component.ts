@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private titlePage: Title
   ) { 
-    this.title = "Teste";
+    this.title = "Cadastro de Candidatos";
     titlePage.setTitle("Bem vindo ao Banco de Talentos...");
 
     console.log(localStorage.getItem('user'));

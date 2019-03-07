@@ -13,17 +13,18 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class CandidatesComponent implements OnInit {
 
   candidates: Candidate[] = [];
+  controllers: string[] = [];
+  erro: string[] = [];
   candidateSelected: Candidate;
-  basic: boolean;
+  showModal: boolean;
   form: FormGroup;
+  submitLoading: boolean = false;
 
   constructor(
     private candidateService: CandidateService,
     private dialogService: DialogService,
     private fb: FormBuilder
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.form = this.fb.group({
       id: [],
       name: ['', Validators.required],
@@ -35,6 +36,10 @@ export class CandidatesComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.controllers = Object.keys(this.form.controls);
+  }
+
+  ngOnInit() {
     this.listCandidates();
   }
 
@@ -49,7 +54,34 @@ export class CandidatesComponent implements OnInit {
   }
 
   onCreate(): void {
-    this.basic = true;
+    this.form.reset();
+    if (this.candidateSelected) {
+      this.candidateSelected = null;
+    }
+    this.showModal = true;
+  }
+
+  onSave(): void {
+    if (this.candidateSelected) {
+      this.candidateService.updateCandidate(this.form.value).subscribe((data) => {
+        this.listCandidates();
+        this.showModal = false;
+        console.log(data);
+      });
+    } else {
+      this.candidateService.createCandidate(this.form.value).subscribe((data) => {
+        this.listCandidates();
+        this.showModal = false;
+        console.log(data);
+      });
+    }
+  }
+
+  onEdit(): void {
+    this.showModal = true;
+    for (const controller of this.controllers) {
+      this.form.controls[`${controller}`].setValue(this.candidateSelected[`${controller}`]);
+    }
   }
 
   onDelete(): void {

@@ -28,7 +28,7 @@
   </clr-dg-footer>
 </clr-datagrid>
 
-<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'lg'">
+<clr-modal [(clrModalOpen)]="showModal" [clrModalSize]="'lg'">
   <h3 class="modal-title">Cadastrar um candidato</h3>
   <div class="modal-body">
     <form [formGroup]="form">
@@ -36,31 +36,56 @@
         <div class="form-group">
           <label for="name" class="required">Nome do candidato</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="name" size="95" maxlength="80"
-              autocomplete="off">
+            <input input-delinea type="text" formControlName="name" size="72" maxlength="68" autocomplete="off">
           </label>
         </div>
         <div class="form-group">
-          <label for="cpf" class="required">CNPJ</label>
+          <label for="email" class="required">Email</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" id="cpf" formControlName="cpf" placeholder="00.000.000/000-00" size="30" maxlength="18"
-              autocomplete="off">
+            <input input-delinea type="text" formControlName="email" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="cpf" class="required">CPF</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="cpf" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="rg" class="required">RG</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="rg" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="birth_date" class="required">Data de Nascimento</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="date" formControlName="birth_date">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="required">Telefone</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="phone" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>        
+        <div class="form-group">
+          <label for="username" class="required">Usuário</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="username" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="password" class="required">Senha</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="password" formControlName="password" size="72" maxlength="68" autocomplete="off">
           </label>
         </div>
       </section>
     </form>
-    <div *ngFor="let controlador of controladores">
-      <clr-alert [clrAlertClosable]="false" [clrAlertType]="'alert-danger'" *ngIf="true">
-        <div class="alert-item">
-          <span class="alert-text">
-            TESTE
-          </span>
-        </div>
-      </clr-alert>
-    </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger-outline" (click)="basic = false">Cancelar</button>
+    <button type="button" class="btn btn-danger-outline" (click)="showModal = false">Cancelar</button>
     <button type="button" [clrLoading]="submitLoading" class="btn btn-success" (click)="onSave()"
       [disabled]="!form.valid || submitLoading">Salvar</button>
   </div>

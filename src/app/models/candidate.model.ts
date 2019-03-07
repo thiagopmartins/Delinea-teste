@@ -2,7 +2,7 @@ export interface Candidate {
     id?: number,
     name?: string,
     cpf?: string,
-    rg?: string,
+    rg?: number,
     birth_date?: string,
     phone?: string,
     email?: string,

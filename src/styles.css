@@ -83,6 +83,10 @@ a:hover {
     background-color: rgba(166, 206, 57, 0.20) !important;
 }
 
+.modal-dialog.modal-lg {
+    width: 28rem;
+}
+
 #btn-login {
     margin-top: 1.2rem;
 }
