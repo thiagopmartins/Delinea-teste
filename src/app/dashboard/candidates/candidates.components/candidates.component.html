@@ -1,0 +1,92 @@
+<clr-datagrid [(clrDgSingleSelected)]="candidateSelected" [clDgRowSelection]="true">
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-success-outline" (click)="onCreate()">
+        <clr-icon shape="plus"></clr-icon> Adicionar
+      </button>
+      <button type="button" class="btn btn-sm btn-danger-outline" (click)="onDelete()" [disabled]="!candidateSelected">
+        <clr-icon shape="close"></clr-icon> Deletar
+      </button>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" [disabled]="!candidateSelected">
+        <clr-icon shape="pencil"></clr-icon> Editar
+      </button>
+    </div>
+  </clr-dg-action-bar>
+  <clr-dg-placeholder>Sem Candidatos cadastrados!</clr-dg-placeholder>
+  <clr-dg-column [clrDgField]="'full_name'">Nome</clr-dg-column>
+  <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+  <clr-dg-column [clrDgField]="'phone'">Telefone</clr-dg-column>
+  <clr-dg-row *clrDgItems="let candidate of candidates" [clrDgItem]="candidate">
+    <clr-dg-cell>{{ candidate.full_name }}</clr-dg-cell>
+    <clr-dg-cell>{{ candidate.email }}</clr-dg-cell>
+    <clr-dg-cell>{{ candidate.phone }}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} de {{pagination.totalItems}} Candidatos
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="showModal" [clrModalSize]="'lg'">
+  <h3 class="modal-title">Cadastrar um candidato</h3>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <section>
+        <div class="form-group">
+          <label for="full_name" class="required">Nome do candidato</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="full_name" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="email" class="required">Email</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="email" size="72" maxlength="68" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="cpf" class="required">CPF</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="cpf" size="34" maxlength="25" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="rg" class="required">RG</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="rg" size="33" maxlength="25" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="required">Telefone</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="phone" size="48" maxlength="40" autocomplete="off">
+          </label>
+        </div>            
+        <div class="form-group">
+          <label for="birth_date" class="required">Data de Nascimento</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="date" formControlName="birth_date" size="34">
+          </label>
+        </div>         
+        <div class="form-group">
+          <label for="username" class="required">Usuário</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="text" formControlName="username" size="34" maxlength="15" autocomplete="off">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="password" class="required">Senha</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="password" formControlName="password" size="33" maxlength="30" autocomplete="off" [attr.disabled]="candidateSelected ? '' : null">
+          </label>
+        </div>
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger-outline" (click)="showModal = false">Cancelar</button>
+    <button type="button" [clrLoading]="submitLoading" class="btn btn-success" (click)="onSave()"
+      [disabled]="!form.valid || submitLoading">Salvar</button>
+  </div>
+</clr-modal>
