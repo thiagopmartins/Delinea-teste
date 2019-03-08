@@ -87,6 +87,10 @@ a:hover {
     max-width: 30rem;
 }
 
+.modal-footer {
+    padding: 1rem 10% 0px;
+}
+
 #btn-login {
     margin-top: 1.2rem;
 }

@@ -3,7 +3,7 @@ import { throwError } from "rxjs";
 
 export const API_URL: string = 'http://delineaapi.herokuapp.com';
 
-export const  HTTP_OPTIONS = {
+export const HTTP_OPTIONS = {
     headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded'
     })
@@ -11,11 +11,15 @@ export const  HTTP_OPTIONS = {
 
 export const handleError = (error) => {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-        errorMessage = error.error.message;
+    if (error.error.error_description !== undefined) {
+        errorMessage = error.error.error_description;
     } else {
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        for (const key in error.error) {
+            errorMessage = `ERROR: Field ${key}\nMessage: ${error.error[key][0]}`;
+        }
+        errorMessage === ('' || undefined) ? errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\nConsulte o log para mais detalhes.` : null;
     }
+    console.error(error.error);
     window.alert(errorMessage);
     return throwError(errorMessage);
 }

@@ -13,11 +13,11 @@
     </div>
   </clr-dg-action-bar>
   <clr-dg-placeholder>Sem Candidatos cadastrados!</clr-dg-placeholder>
-  <clr-dg-column [clrDgField]="'name'">Nome</clr-dg-column>
+  <clr-dg-column [clrDgField]="'full_name'">Nome</clr-dg-column>
   <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
   <clr-dg-column [clrDgField]="'phone'">Telefone</clr-dg-column>
   <clr-dg-row *clrDgItems="let candidate of candidates" [clrDgItem]="candidate">
-    <clr-dg-cell>{{ candidate.name }}</clr-dg-cell>
+    <clr-dg-cell>{{ candidate.full_name }}</clr-dg-cell>
     <clr-dg-cell>{{ candidate.email }}</clr-dg-cell>
     <clr-dg-cell>{{ candidate.phone }}</clr-dg-cell>
   </clr-dg-row>
@@ -32,11 +32,11 @@
   <h3 class="modal-title">Cadastrar um candidato</h3>
   <div class="modal-body">
     <form [formGroup]="form">
-      <section class="form-block">
+      <section>
         <div class="form-group">
-          <label for="name" class="required">Nome do candidato</label>
+          <label for="full_name" class="required">Nome do candidato</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="name" size="72" maxlength="68" autocomplete="off">
+            <input input-delinea type="text" formControlName="full_name" size="72" maxlength="68" autocomplete="off">
           </label>
         </div>
         <div class="form-group">
@@ -48,37 +48,37 @@
         <div class="form-group">
           <label for="cpf" class="required">CPF</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="cpf" size="72" maxlength="68" autocomplete="off">
+            <input input-delinea type="text" formControlName="cpf" size="34" maxlength="25" autocomplete="off">
           </label>
         </div>
         <div class="form-group">
           <label for="rg" class="required">RG</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="rg" size="72" maxlength="68" autocomplete="off">
-          </label>
-        </div>
-        <div class="form-group">
-          <label for="birth_date" class="required">Data de Nascimento</label>
-          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="date" formControlName="birth_date">
+            <input input-delinea type="text" formControlName="rg" size="33" maxlength="25" autocomplete="off">
           </label>
         </div>
         <div class="form-group">
           <label for="phone" class="required">Telefone</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="phone" size="72" maxlength="68" autocomplete="off">
+            <input input-delinea type="text" formControlName="phone" size="48" maxlength="40" autocomplete="off">
           </label>
-        </div>        
+        </div>            
+        <div class="form-group">
+          <label for="birth_date" class="required">Data de Nascimento</label>
+          <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
+            <input input-delinea type="date" formControlName="birth_date" size="34">
+          </label>
+        </div>         
         <div class="form-group">
           <label for="username" class="required">Usuário</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="text" formControlName="username" size="72" maxlength="68" autocomplete="off">
+            <input input-delinea type="text" formControlName="username" size="34" maxlength="15" autocomplete="off">
           </label>
         </div>
         <div class="form-group">
           <label for="password" class="required">Senha</label>
           <label aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm">
-            <input input-delinea type="password" formControlName="password" size="72" maxlength="68" autocomplete="off">
+            <input input-delinea type="password" formControlName="password" size="33" maxlength="30" autocomplete="off" [attr.disabled]="candidateSelected ? '' : null">
           </label>
         </div>
       </section>

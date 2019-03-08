@@ -1,6 +1,6 @@
 export interface Candidate {
     id?: number,
-    name?: string,
+    full_name?: string,
     cpf?: string,
     rg?: number,
     birth_date?: string,

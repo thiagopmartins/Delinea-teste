@@ -29,7 +29,7 @@ export class CandidatesComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       id: [],
-      name: ['', Validators.required],
+      full_name: ['', Validators.required],
       cpf: ['', Validators.required],
       rg: ['', Validators.required],
       birth_date: ['', Validators.required],
@@ -65,8 +65,8 @@ export class CandidatesComponent implements OnInit {
 
   onSave(): void {
     if (this.candidateSelected) {
-      let passwordChanges: boolean = (this.form.controls['password'].value !== this.candidateSelected.password);
-      this.candidateService.updateCandidate(this.form.value, passwordChanges).subscribe((data) => {
+      this.form.controls['password'].setValue(this.candidateSelected.password);
+      this.candidateService.updateCandidate(this.form.value).subscribe((data) => {
         this.listCandidates();
         this.showModal = false;
         console.log(data);
@@ -82,8 +82,12 @@ export class CandidatesComponent implements OnInit {
 
   onEdit(): void {
     this.showModal = true;
+    this.form.reset();
     for (const controller of this.controllers) {
-      this.form.controls[`${controller}`].setValue(this.candidateSelected[`${controller}`]);
+      if (controller !== 'password')
+        this.form.controls[`${controller}`].setValue(this.candidateSelected[`${controller}`]);
+      else
+        this.form.controls[`${controller}`].setValue('password');
     }
   }
 
@@ -97,7 +101,7 @@ export class CandidatesComponent implements OnInit {
         });
     }
     else {
-      this.dialogService.confirm(`Deseja deletar o candidato ${this.candidateSelected.name} ?`)
+      this.dialogService.confirm(`Deseja deletar o candidato ${this.candidateSelected.full_name} ?`)
         .then((canDelete: boolean) => {
           if (canDelete) {
             this.candidateService.deleteCandidate(this.candidateSelected.id).subscribe(() => {
